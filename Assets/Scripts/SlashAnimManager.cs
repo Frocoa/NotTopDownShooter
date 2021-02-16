@@ -23,11 +23,11 @@ public class SlashAnimManager : MonoBehaviour
         passedTime = Time.time - startTime;
 
         if (passedTime >= 0.1) {
-            checkDespawn();
+            CheckDespawn();
         }
     }
 
- private void checkDespawn() {
+    private void CheckDespawn() {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("slash_anim")) {
             Destroy(gameObject);
         } 

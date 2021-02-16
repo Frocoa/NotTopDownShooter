@@ -14,6 +14,9 @@ public class Background : MonoBehaviour
     private GameObject mountains;
     private GameObject grass;
     private GameObject ground;
+
+    private Vector3 size;
+    private Vector3 initialPos;
     
     void Awake()
     {
@@ -21,15 +24,28 @@ public class Background : MonoBehaviour
         mountains = gameObject.transform.GetChild(1).gameObject;
         grass = gameObject.transform.GetChild(2).gameObject;
         ground = gameObject.transform.GetChild(3).gameObject;
+
+        initialPos = sky.transform.position;
+        size = sky.GetComponent<Renderer>().bounds.size;
         
     }
 
     void Update()
     {
-        sky.transform.position += -transform.right * skySpeed * speedMultiplier * Time.deltaTime;
-        mountains.transform.position += -transform.right * mountainsSpeed * speedMultiplier * Time.deltaTime;
-        grass.transform.position += -transform.right * grassSpeed * speedMultiplier * Time.deltaTime;
-        ground.transform.position += -transform.right * groundSpeed * speedMultiplier * Time.deltaTime;
+        sky.transform.position -= skySpeed * speedMultiplier*transform.right * Time.deltaTime;
+        mountains.transform.position -= mountainsSpeed * speedMultiplier * transform.right * Time.deltaTime;
+        grass.transform.position -= grassSpeed * speedMultiplier * transform.right * Time.deltaTime;
+        ground.transform.position -= groundSpeed * speedMultiplier * transform.right * Time.deltaTime;
 
+        tpComponent(sky);
+        tpComponent(mountains);
+        tpComponent(grass);
+        tpComponent(ground);
+    }
+
+    private void tpComponent(GameObject component) {
+        if(component.transform.position.x <= (initialPos.x - size.x)) {
+            component.transform.position = initialPos;
+        }
     }
 }

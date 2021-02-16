@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59c3e8060c706d7469236da87dc52c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 20
   enemyBulletAnim: {fileID: 9100000, guid: 6e0c0ccf2a2945c41a14a48f846b50ba, type: 2}
   flashPrefab: {fileID: 1644270071544573462, guid: 1289b585d4889e743baff67846b8c59a,
     type: 3}
@@ -130,7 +130,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2909288021164241488}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

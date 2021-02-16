@@ -6,11 +6,15 @@ public class Shoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public float cooldown = 0;
+
     private float deltaTime = 0;
     private float shootMoment = 0;
-
-    void Start()
+    private Magazine magazine;
+    void Awake()
     {
+        if(gameObject.GetComponent<Magazine>() != null) {
+            magazine = gameObject.GetComponent<Magazine>();
+        }
         
     }
 
@@ -24,10 +28,12 @@ public class Shoot : MonoBehaviour
     }
 
     private void summonBullet() { 
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && magazine.GetBullets() > 0) {
 
+            MagazineHUD.instance.removeBullet(magazine.GetBullets());
             GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
             bullet.GetComponent<Bullet>().fatherTag = transform.tag;
+            magazine.ReduceBulletAmount(1);
             shootMoment = Time.time;
         }
 
