@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Slash : MonoBehaviour
 {
-    public GameObject slashPrefab; 
+    public GameObject slashPrefab;
+    public Transform slashSpawn;
 
     void Start()
     {
@@ -18,7 +19,7 @@ public class Slash : MonoBehaviour
     }
     private void summonSlash() {
         if (Input.GetMouseButtonDown(1)) {
-            Instantiate(slashPrefab, transform.position, transform.rotation);
+            Instantiate(slashPrefab, slashSpawn.position, slashSpawn.rotation);
         }
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public Transform bulletSpawn;
     public float cooldown = 0;
 
     private float deltaTime = 0;
@@ -31,7 +32,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && magazine.GetBullets() > 0) {
 
             MagazineHUD.instance.removeBullet(magazine.GetBullets());
-            GameObject bullet = Instantiate(bulletPrefab, transform.position, transform.rotation);
+            GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
             bullet.GetComponent<Bullet>().fatherTag = transform.tag;
             magazine.ReduceBulletAmount(1);
             shootMoment = Time.time;

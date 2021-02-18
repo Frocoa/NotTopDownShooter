@@ -7,6 +7,7 @@ public class MagazineHUD : MonoBehaviour
     public Magazine magazine;
     public GameObject bulletPrefab;
     public float distance = 1.5f;
+    public Transform ammoTransform;
 
     private int maxAmmo;
     private List<GameObject> bulletList = new List<GameObject>();
@@ -36,7 +37,7 @@ public class MagazineHUD : MonoBehaviour
     }
 
     private Vector3 bulletPosition(int number) {
-        return(transform.position+(number*transform.up*distance));
+        return(ammoTransform.position+(number*transform.up*distance));
     }
 
     public void removeBullet(int index) {
