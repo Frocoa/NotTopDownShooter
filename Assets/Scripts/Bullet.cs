@@ -70,10 +70,20 @@ public class Bullet : MonoBehaviour
         GameObject targetObject = collision.gameObject;
 
         if (collision.gameObject.tag != fatherTag) {
-            if (collision.gameObject.GetComponent<EnemyHP>() != null) {
-                EnemyHP target = collision.gameObject.GetComponent<EnemyHP>();
-                target.TakeDamage(1);
-                Destroy(gameObject);
+
+            if (collision.gameObject.transform.parent != null) { 
+
+                if (collision.gameObject.transform.parent.gameObject.GetComponent<EnemyHP>() != null) {
+                    EnemyHP target = collision.gameObject.transform.parent.gameObject.GetComponent<EnemyHP>();
+                    target.TakeDamage(1);
+                    Destroy(gameObject);
+                }
+
+                else if (collision.gameObject.GetComponent<EnemyHP>() != null) {
+                    EnemyHP target = collision.gameObject.gameObject.GetComponent<EnemyHP>();
+                    target.TakeDamage(1);
+                    Destroy(gameObject);
+                }
             }
 
             else if (collision.gameObject.GetComponent<PlayerHP>() != null) {
@@ -84,7 +94,10 @@ public class Bullet : MonoBehaviour
             }
 
             else if (collision.gameObject.tag == "Slash") {
-                Ricochet(targetObject);
+
+                if (fatherTag != "Player") { 
+                    Ricochet(targetObject);
+                }
 
             }
         }

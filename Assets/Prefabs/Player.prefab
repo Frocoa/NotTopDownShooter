@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 903265bd07da493479df4504654e53a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBullets: 3
+  maxBullets: 10
 --- !u!114 &5184497280592863207
 MonoBehaviour:
   m_ObjectHideFlags: 0

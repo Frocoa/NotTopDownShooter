@@ -19,7 +19,7 @@ TagManager:
   - gun
   - bullet
   - Player
-  - 
+  - enemies
   - 
   - 
   - 
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: Effects
     uniqueID: 3412256607
+    locked: 0
+  - name: Hud
+    uniqueID: 1387933753
     locked: 0

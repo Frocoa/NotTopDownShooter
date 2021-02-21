@@ -57,6 +57,10 @@ public class EnemyHP : MonoBehaviour
         monsterAnimation.enabled = false;
         Destroy(col);
         Destroy(gameObject, despawnTime);
+        
+        foreach(Transform child in gameObject.transform) {
+            GameObject.Destroy(child.gameObject);
+        }
     }
     
     private void FlashRed() {

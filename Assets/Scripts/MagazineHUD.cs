@@ -39,7 +39,7 @@ public class MagazineHUD : MonoBehaviour
     private Vector3 bulletPosition(int number) {
         return(ammoTransform.position+(number*transform.up*distance));
     }
-
+        
     public void removeBullet(int index) {
         bulletList[index - 1].SetActive(false);
        
