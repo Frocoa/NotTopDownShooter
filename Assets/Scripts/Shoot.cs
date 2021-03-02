@@ -23,13 +23,13 @@ public class Shoot : MonoBehaviour
     void Update()
     {
         if (deltaTime >= cooldown) {
-            summonBullet();  
+            SummonBullet();  
         }
         deltaTime = Time.time - shootMoment;
     }
 
-    private void summonBullet() { 
-        if (Input.GetMouseButtonDown(0) && magazine.GetBullets() > 0) {
+    private void SummonBullet() { 
+        if (Input.GetMouseButtonDown(0) && magazine.GetBullets() > 0 && magazine.isReloading == false) {
 
             MagazineHUD.instance.removeBullet(magazine.GetBullets());
             GameObject bullet = Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
