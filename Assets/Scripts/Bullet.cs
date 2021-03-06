@@ -4,7 +4,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float speed = 0;
-    public RuntimeAnimatorController enemyBulletAnim;
+    public RuntimeAnimatorController alacranBulletAnimator;
+    public RuntimeAnimatorController cyberFlyBulletAnimator;
     public GameObject flashPrefab;
 
     [Header ("Parry Shake")]
@@ -36,7 +37,11 @@ public class Bullet : MonoBehaviour
         originalAnim = anim.runtimeAnimatorController;
 
         if(fatherTag == "Enemy") {
-            anim.runtimeAnimatorController = enemyBulletAnim;
+            anim.runtimeAnimatorController = alacranBulletAnimator;
+        }
+
+        if(fatherTag == "CyberFly") {
+            anim.runtimeAnimatorController = cyberFlyBulletAnimator;
         }
     }
 
@@ -71,20 +76,21 @@ public class Bullet : MonoBehaviour
 
         if (collision.gameObject.tag != fatherTag) {
 
-            if (collision.gameObject.transform.parent != null) { 
+            if (collision.gameObject.transform.parent != null) {
 
                 if (collision.gameObject.transform.parent.gameObject.GetComponent<EnemyHP>() != null) {
                     EnemyHP target = collision.gameObject.transform.parent.gameObject.GetComponent<EnemyHP>();
                     target.TakeDamage(1);
                     Destroy(gameObject);
                 }
-
-                else if (collision.gameObject.GetComponent<EnemyHP>() != null) {
-                    EnemyHP target = collision.gameObject.gameObject.GetComponent<EnemyHP>();
-                    target.TakeDamage(1);
-                    Destroy(gameObject);
-                }
             }
+
+            else if (collision.gameObject.GetComponent<EnemyHP>() != null) {
+                EnemyHP target = collision.gameObject.gameObject.GetComponent<EnemyHP>();
+                target.TakeDamage(1);
+                Destroy(gameObject);
+            }
+            
 
             else if (collision.gameObject.GetComponent<PlayerHP>() != null) {
                 PlayerHP player = collision.gameObject.GetComponent<PlayerHP>();
